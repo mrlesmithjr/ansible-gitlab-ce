@@ -36,8 +36,8 @@
 
 - name: installing gitlab-ce
   apt: name=gitlab-ce state=present
-#  when: gitlab_installed.stat.exists == false
-#  notify:
-#    - reconfigure gitlab
-#    - restart gitlab
-#    - wait for unicorn
+  when: gitlab_installed.stat.exists == false
+  notify:
+    - reconfigure gitlab
+    - restart gitlab
+    - wait for unicorn
