@@ -2,6 +2,8 @@
 # defaults file for ansible-gitlab-ce
 config_gitlab: true
 gitlab_active_directory: false
+gitlab_ce_dl_package: gitlab-ce_8.0.5-ce.0_amd64.deb
+gitlab_ce_dl_url: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty
 gitlab_email_display_name: '{{ ansible_hostname }}'
 gitlab_email_enabled: false  #define here or in group_vars/group
 gitlab_email_from: '{{ ansible_hostname }}@{{ smtp_domain_name }}'

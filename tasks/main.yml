@@ -7,5 +7,6 @@
   when: ansible_os_family == "Redhat"
 
 - include: config_gitlab.yml
-  tags: [config_gitlab]
+  tags:
+    - config_gitlab
   when: config_gitlab

@@ -10,16 +10,22 @@
   stat: path=/usr/bin/gitlab-ctl
   register: gitlab_installed
 
-- name: downloading gitlab deb package
-  get_url:
-    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
-    dest: /tmp/script.deb.sh
-    mode: 0775
-  when: gitlab_installed.stat.exists == false
+#- name: downloading gitlab deb package
+#  get_url:
+#    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+#    dest: /tmp/script.deb.sh
+#    mode: 0775
+#  when: gitlab_installed.stat.exists == false
 
-- name: installing gitlab
-  command: /tmp/script.deb.sh
-  when: gitlab_installed.stat.exists == false
+#- name: installing gitlab
+#  command: /tmp/script.deb.sh
+#  when: gitlab_installed.stat.exists == false
+
+- name: downloading gitlab-ce package
+  get_url: url={{ gitlab_ce_dl_url }}/{{ gitlab_ce_dl_package }} dest=/opt/{{ gitlab_ce_dl_package }}
+
+- name: installing gitlab-ce
+  apt: deb=/opt/{{ gitlab_ce_dl_package }} state=present
 
 - name: installing gitlab-ce
   apt: name=gitlab-ce state=present
@@ -28,7 +34,3 @@
     - reconfigure gitlab
     - restart gitlab
     - wait for unicorn
-
-#- name: reconfiguring gitlab (first-run)
-#  command: gitlab-ctl reconfigure creates=/var/opt/gitlab/bootstrapped
-#  when: gitlab_installed.stat.exists == false
