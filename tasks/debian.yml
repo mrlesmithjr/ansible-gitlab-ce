@@ -34,8 +34,8 @@
 #- name: installing gitlab-ce
 #  apt: deb=/opt/{{ gitlab_ce_dl_package }} state=present
 
-#- name: installing gitlab-ce
-#  apt: name=gitlab-ce state=present
+- name: installing gitlab-ce
+  apt: name=gitlab-ce state=present
 #  when: gitlab_installed.stat.exists == false
 #  notify:
 #    - reconfigure gitlab
