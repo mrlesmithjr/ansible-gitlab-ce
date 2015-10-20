@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-gitlab-ce
-config_gitlab: true
+config_gitlab: false
 gitlab_active_directory: false
 gitlab_apt_key: https://packages.gitlab.com/gpg.key
 gitlab_apt_repos:
