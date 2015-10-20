@@ -2,6 +2,7 @@
 # defaults file for ansible-gitlab-ce
 config_gitlab: true
 gitlab_active_directory: false
+gitlab_apt_key: https://packages.gitlab.com/gpg.key
 gitlab_ce_dl_package: gitlab-ce_8.0.5-ce.0_amd64.deb
 gitlab_ce_dl_url: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty
 gitlab_email_display_name: '{{ ansible_hostname }}'
