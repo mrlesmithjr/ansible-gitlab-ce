@@ -6,9 +6,9 @@
     - ca-certificates
     - postfix
 
-- name: checking to see if gitlab is already installed
-  stat: path=/usr/bin/gitlab-ctl
-  register: gitlab_installed
+#- name: checking to see if gitlab is already installed
+#  stat: path=/usr/bin/gitlab-ctl
+#  register: gitlab_installed
 
 #- name: downloading gitlab deb package
 #  get_url:
@@ -21,19 +21,23 @@
 #  command: /tmp/script.deb.sh
 #  when: gitlab_installed.stat.exists == false
 
-- name: downloading gitlab-ce package
-  get_url: url={{ gitlab_ce_dl_url }}/{{ gitlab_ce_dl_package }} dest=/opt/{{ gitlab_ce_dl_package }}
+#- name: downloading gitlab-ce package
+#  get_url: url={{ gitlab_ce_dl_url }}/{{ gitlab_ce_dl_package }} dest=/opt/{{ gitlab_ce_dl_package }}
 
 - name: installing gitlab repo key(s)
   apt_key: url={{ gitlab_apt_key }} state=present
 
-- name: installing gitlab-ce
-  apt: deb=/opt/{{ gitlab_ce_dl_package }} state=present
+- name: adding gitlab apt repositories
+  apt_repository: repo="{{ item }}" state=present
+  with_items: gitlab_apt_repos
 
-- name: installing gitlab-ce
-  apt: name=gitlab-ce state=present
-  when: gitlab_installed.stat.exists == false
-  notify:
-    - reconfigure gitlab
-    - restart gitlab
-    - wait for unicorn
+#- name: installing gitlab-ce
+#  apt: deb=/opt/{{ gitlab_ce_dl_package }} state=present
+
+#- name: installing gitlab-ce
+#  apt: name=gitlab-ce state=present
+#  when: gitlab_installed.stat.exists == false
+#  notify:
+#    - reconfigure gitlab
+#    - restart gitlab
+#    - wait for unicorn
