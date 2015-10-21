@@ -19,7 +19,10 @@
 
 - name: installing gitlab-ce
   apt: name=gitlab-ce state=present
-  notify:
-    - reconfigure gitlab
-    - restart gitlab
-    - wait for unicorn
+
+- name: reconfiguring gitlab-ce (first-time)
+  command: gitlab-ctl reconfigure
+  args:
+    creates: /var/opt/gitlab/bootstrapped
+  failed_when: false
+  notify: restart gitlab

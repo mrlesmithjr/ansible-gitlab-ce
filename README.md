@@ -4,18 +4,27 @@ Role Name
 Installs GitLab-CE https://gitlab.com/gitlab-org/gitlab-ce
 #####Configurable (E-Mail,LDAP Ready)
 
+Default login is root/5iveL!fe
+
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
 ````
+---
 # defaults file for ansible-gitlab-ce
-config_gitlab: true
+config_gitlab: false
 gitlab_active_directory: false
+gitlab_apt_key: https://packages.gitlab.com/gpg.key
+gitlab_apt_repos:
+  - deb https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main
+  - deb-src https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main
+gitlab_ce_dl_package: gitlab-ce_8.0.5-ce.0_amd64.deb
+gitlab_ce_dl_url: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty
 gitlab_email_display_name: '{{ ansible_hostname }}'
 gitlab_email_enabled: false  #define here or in group_vars/group
 gitlab_email_from: '{{ ansible_hostname }}@{{ smtp_domain_name }}'
@@ -35,7 +44,7 @@ pri_domain_name: example.org  #defines primary domain name...define here or glob
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
