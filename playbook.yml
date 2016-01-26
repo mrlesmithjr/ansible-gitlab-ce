@@ -1,0 +1,8 @@
+---
+- name: provisions Gitlab-CE
+  hosts: all
+  sudo: true
+  vars:
+  roles:
+    - role: ansible-gitlab-ce
+  tasks:
