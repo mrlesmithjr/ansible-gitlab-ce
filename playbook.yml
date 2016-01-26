@@ -3,6 +3,7 @@
   hosts: all
   become: true
   vars:
+    - config_gitlab: false
   roles:
     - role: ansible-gitlab-ce
   tasks:
