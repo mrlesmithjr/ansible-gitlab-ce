@@ -2,10 +2,10 @@
 # defaults file for ansible-gitlab-ce
 config_gitlab: false
 gitlab_active_directory: false
-gitlab_apt_key: https://packages.gitlab.com/gpg.key
+gitlab_apt_key: 'https://packages.gitlab.com/gpg.key'
 gitlab_apt_repos:
-  - deb https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main
-  - deb-src https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main
+  - 'deb https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main'
+  - 'deb-src https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ trusty main'
 gitlab_ce_dl_package: 'gitlab-ce_{{ gitlab_ce_version }}-ce.0_amd64.deb'
 gitlab_ce_dl_url: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/{{ ansible_distribution|lower }}/{{ ansible_distribution_release|lower }}'
 gitlab_ce_version: 8.4.1
@@ -32,5 +32,5 @@ gitlab_ldap_servers: [] #define here or in group_vars/group
 #    role: main
 #  - host: 'dc02.{{ pri_domain_name }}'
 #    role: secondary
-pri_domain_name: example.org  #defines primary domain name...define here or globally in group_vars/all
+pri_domain_name: 'example.org'  #defines primary domain name...define here or globally in group_vars/all
 smtp_domain_name: '{{ pri_domain_name }}'  #defines smtp email domain..generally same as pri_domain_name
