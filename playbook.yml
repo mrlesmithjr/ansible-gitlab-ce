@@ -5,5 +5,6 @@
   vars:
     - config_gitlab: false
   roles:
+    - role: ansible-postfix
     - role: ansible-gitlab-ce
   tasks:
