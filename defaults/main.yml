@@ -15,7 +15,6 @@ gitlab_email_from: '{{ ansible_hostname }}@{{ smtp_domain_name }}'
 gitlab_email_reply_to: '{{ gitlab_email_from }}'
 gitlab_ldap_info:  #define ldap info here...will replace other ldap config in future.
   ldap_base_dn: []  #define here or in group_vars/group
-  ldap_base_dn: []  #define here or in group_vars/group
   ldap_bind_dn: []  #define here or in group_vars/group
   ldap_bind_pass: []  #define here or in group_vars/group
   ldap_servers: [] #define here or in group_vars/group
