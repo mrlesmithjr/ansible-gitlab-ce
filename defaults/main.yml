@@ -34,3 +34,4 @@ gitlab_ldap_servers: [] #define here or in group_vars/group
 #    role: secondary
 pri_domain_name: 'example.org'  #defines primary domain name...define here or globally in group_vars/all
 smtp_domain_name: '{{ pri_domain_name }}'  #defines smtp email domain..generally same as pri_domain_name
+smtp_server: 'smtp.{{ pri_domain_name }}'
