@@ -9,7 +9,30 @@ Default login is root/5iveL!fe
 Requirements
 ------------
 
-None
+Install all Ansible role requirements.
+````
+sudo ansible-galaxy install -r requirements.yml -f
+````
+
+Vagrant
+-------
+Spin up Environment under Vagrant to test.
+````
+vagrant up
+````
+
+Usage
+-----
+````
+user: root
+pass: 5iveL!fe
+````
+
+###### Non-Vagrant
+Login to WebUI (http://iporhostname)
+
+###### Vagrant
+Login to WebUI (http://127.0.0.1:8080)
 
 Role Variables
 --------------
@@ -49,11 +72,28 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: mrlesmithjr.gitlab-ce }
+#### GitHub
+````
+---
+- name: provisions Gitlab-CE
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: ansible-gitlab-ce
+  tasks:
+````
+#### Galaxy
+````
+---
+- name: provisions Gitlab-CE
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: mrlesmithjr.gitlab-ce
+  tasks:
+````
 
 License
 -------
