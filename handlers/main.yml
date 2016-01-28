@@ -4,7 +4,9 @@
   command: gitlab-ctl reconfigure
 
 - name: restart gitlab
-  shell: 'sleep 20 && gitlab-ctl restart'  #wait 20 secs before attempting to restart..gives reconfigure time to complete
+  command: gitlab-ctl restart
+  wait_for:
+    delay: 20  #wait 20 secs before attempting to restart..gives reconfigure time to complete
 
 - name: upgrade gitlab
   command: gitlab-ctl upgrade
@@ -16,4 +18,5 @@
   command: gitlab-ctl start
 
 - name: wait for unicorn
-  wait_for: port=8080
+  wait_for:
+    port: 8080
