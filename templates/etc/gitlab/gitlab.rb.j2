@@ -137,33 +137,35 @@ gitlab_rails['ldap_enabled'] = false
 
 {% elif (gitlab_ldap_enabled is defined and gitlab_ldap_enabled) and gitlab_ldap_servers is defined %}
 gitlab_rails['ldap_enabled'] = true
-  gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
+gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
+main: # 'main' is the GitLab 'provider ID' of this LDAP server
 {%   for item in gitlab_ldap_servers %}
-      {{ item.role }}: # '{{ item.role }}' is the GitLab 'provider ID' of this LDAP server
-      label: 'LDAP'
-      host: '{{ item.host }}'
-      port: 389
-      uid: 'sAMAccountName'
-      method: 'plain' # "tls" or "ssl" or "plain"
-      bind_dn: '{{ gitlab_ldap_bind_dn }}'
-      password: '{{ gitlab_ldap_bind_pass }}'
+  {{ item.role }}: # '{{ item.role }}' is the GitLab 'provider ID' of this LDAP server
+  label: 'LDAP'
+
+  host: '{{ item.host }}'
+  port: 389
+  uid: 'sAMAccountName'
+  method: 'plain' # "tls" or "ssl" or "plain"
+  bind_dn: '{{ gitlab_ldap_bind_dn }}'
+  password: '{{ gitlab_ldap_bind_pass }}'
 {%     if gitlab_active_directory %}
-      active_directory: true
+  active_directory: true
 {%     endif %}
 {%     if not gitlab_active_directory %}
-      active_directory: false
+  active_directory: false
 {%     endif %}
-      allow_username_or_email_login: false
-      block_auto_created_users: false
-      base: '{{ gitlab_ldap_base_dn }}'
-      user_filter: ''
+  allow_username_or_email_login: false
+  block_auto_created_users: false
+  base: '{{ gitlab_ldap_base_dn }}'
+  user_filter: ''
 #     ## EE only
 #     group_base: ''
 #     admin_group: ''
 #     sync_ssh_keys: false
 #
 {%   endfor %}
- EOS
+EOS
 {% endif %}
 
 ## Setting up Kerberos (EE only)
