@@ -22,9 +22,9 @@ gitlab_ldap_info:  #define ldap info here...will replace other ldap config in fu
 #      role: main
 #    - host: 'dc02.{{ pri_domain_name }}'
 #      role: secondary
-gitlab_ldap_base_dn: []  #define here or in group_vars/group
-gitlab_ldap_bind_dn: []  #define here or in group_vars/group
-gitlab_ldap_bind_pass: []  #define here or in group_vars/group
+gitlab_ldap_base_dn: 'CN=Users,DC=vagrant,DC=local'  #define here or in group_vars/group
+gitlab_ldap_bind_dn: 'CN=gitlab,CN=Users,DC=vagrant,DC=local'  #define here or in group_vars/group
+gitlab_ldap_bind_pass: 'P@55w0rd'  #define here or in group_vars/group
 gitlab_ldap_enabled: false  #define here or in group_vars/group
 gitlab_ldap_servers: [] #define here or in group_vars/group
 #  - host: 'dc01.{{ pri_domain_name }}'
