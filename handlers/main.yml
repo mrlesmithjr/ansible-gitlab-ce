@@ -4,8 +4,7 @@
   command: gitlab-ctl reconfigure
 
 - name: restart gitlab
-  command: gitlab-ctl restart
-  wait_for: 20  #wait 20 secs before attempting to restart..gives reconfigure time to complete
+  command: sleep 20 && gitlab-ctl restart  #wait 20 secs before attempting to restart..gives reconfigure time to complete
 
 - name: upgrade gitlab
   command: gitlab-ctl upgrade
